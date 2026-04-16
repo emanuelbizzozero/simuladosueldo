@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Sueldo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <div style="width: 120px;"></div>
+            <h1>Simulación de Sueldo</h1>
+            <button type="button" class="btn btn-admin" id="btnAdminSeteo" data-bs-toggle="modal" data-bs-target="#adminSeteoModal">Admin</button>
+        </div>
+
+        <!-- Bloque Seteo -->
+        <div class="block" id="seteoBlock">
+            <h3>Configuración</h3>
+            <div class="row g-2">
+                <!-- Columna izquierda -->
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <label for="categoriaSelect">Categoría</label>
+                        <select class="form-control form-control-sm" id="categoriaSelect">
+                            <option value="">Selecciona una categoría</option>
+                            <option value="1">Categoría 1 - 845 módulos</option>
+                            <option value="2">Categoría 2 - 716 módulos</option>
+                            <option value="3">Categoría 3 - 606 módulos</option>
+                            <option value="4">Categoría 4 - 529 módulos</option>
+                            <option value="5">Categoría 5 - 461 módulos</option>
+                            <option value="6">Categoría 6 - 402 módulos</option>
+                            <option value="7">Categoría 7 - 350 módulos</option>
+                            <option value="8">Categoría 8 - 306 módulos</option>
+                            <option value="9">Categoría 9 - 254 módulos</option>
+                            <option value="10">Categoría 10 - 224 módulos</option>
+                            <option value="11">Categoría 11 - 199 módulos</option>
+                            <option value="12">Categoría 12 - 176 módulos</option>
+                            <option value="13">Categoría 13 - 155 módulos</option>
+                            <option value="14">Categoría 14 - 138 módulos</option>
+                        </select>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="valorModulo">Valor del Módulo</label>
+                                <input type="number" class="form-control form-control-sm" id="valorModulo" min="0" step="0.01" value="2783" readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="adicionalCapacitacionSeteo">Adic. Capacitación</label>
+                                <input type="number" class="form-control form-control-sm" id="adicionalCapacitacionSeteo" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="anosAntiguedad">Años de Antigüedad</label>
+                                <input type="number" class="form-control form-control-sm" id="anosAntiguedad" placeholder="Ej: 5" min="0">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="valorAntiguedad">Valor Antigüedad</label>
+                                <input type="number" class="form-control form-control-sm" id="valorAntiguedad" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="tituloSelect">Título</label>
+                        <select class="form-control form-control-sm" id="tituloSelect">
+                            <option value="" selected>Seleccionar ítem</option>
+                            <option value="0">Sin título</option>
+                            <option value="0.20">Título 1 (20%)</option>
+                            <option value="0.14">Título 2 (14%)</option>
+                            <option value="0.08">Título 3 (8%)</option>
+                            <option value="0.036">Título 4 (3.60%)</option>
+                            <option value="0.02">Título 5 (2%)</option>
+                            <option value="0.014">Título 6 (1.40%)</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0">
+                        <label>Presentismo</label>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button type="button" class="btn btn-sm btn-success flex-fill" id="presentismoCompletoBtn">Sí, Completo (100%)</button>
+                            <button type="button" class="btn btn-sm btn-reducido-off flex-fill" id="presentismoReducidoBtn">Sí, Reducido (60%)</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger flex-fill" id="presentismoNoBtn">No</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna derecha -->
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <label>Agregar Ítem Adicional</label>
+                        <div style="border: 1px solid #c8dad3; border-radius: 10px; padding: 10px; background: #ffffff;">
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item5" value="APL">
+                                <label class="form-check-label" for="item5" style="font-size: 0.82rem; margin-bottom: 0;">APL</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item6" value="ATE">
+                                <label class="form-check-label" for="item6" style="font-size: 0.82rem; margin-bottom: 0;">ATE</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 0;">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item7" value="UPCN">
+                                <label class="form-check-label" for="item7" style="font-size: 0.82rem; margin-bottom: 0;">UPCN</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item13" value="Das Familia">
+                                <label class="form-check-label" for="item13" style="font-size: 0.82rem; margin-bottom: 0;">Das Familia</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 0;">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item8" value="Adicional por Función">
+                                <label class="form-check-label" for="item8" style="font-size: 0.82rem; margin-bottom: 0;">Adicional por Función</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item9" value="Permanencia en la categoría 2 años">
+                                <label class="form-check-label" for="item9" style="font-size: 0.82rem; margin-bottom: 0;">Permanencia en la categoría 2 años</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item10" value="Permanencia en la categoría 4 años">
+                                <label class="form-check-label" for="item10" style="font-size: 0.82rem; margin-bottom: 0;">Permanencia en la categoría 4 años</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item11" value="Permanencia en la categoría 6 años">
+                                <label class="form-check-label" for="item11" style="font-size: 0.82rem; margin-bottom: 0;">Permanencia en la categoría 6 años</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 0;">
+                                <input class="form-check-input item-checkbox" type="checkbox" id="item12" value="Permanencia en la categoría 8 años">
+                                <label class="form-check-label" for="item12" style="font-size: 0.82rem; margin-bottom: 0;">Permanencia en la categoría 8 años</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <button type="button" class="btn btn-primary btn-sm w-100" id="agregarItemBtn">+ Agregar ítem a Sueldo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de validación seteo -->
+        <div id="alertaSeteo" class="alert alert-warning text-center" role="alert" style="display:none;">
+            ⚠️ Por favor completar <strong>Antigüedad</strong>, <strong>Título</strong>, <strong>Presentismo</strong> e <strong>Ítem Adicionales</strong> para continuar.
+        </div>
+
+        <div class="row align-items-start g-2" style="flex:1;min-height:0;">
+        <!-- Bloque Sueldo -->
+        <div class="col-lg-8">
+        <div class="block" id="sueldoBlock">
+            <h3>Ingresos</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="sueldoTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Cantidad de Módulos</th>
+                            <th>Valor del Módulo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sueldo Básico</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dedicación Funcional</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Antigüedad</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Adicional por Capacitación</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>RC 02/23</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Título</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Adicional por Módulos</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Norma ISO</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Presentismo</td>
+                            <td><input type="number" class="form-control cantidad" value="1" min="0"></td>
+                            <td><input type="number" class="form-control valor" value="0" min="0" step="0.01"></td>
+                            <td><span class="total">0.00</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="subtotal">
+                Subtotal Sueldo: <span id="subtotalSueldo">$0.00</span>
+            </div>
+        </div>
+        </div><!-- fin col sueldo -->
+
+        <!-- Bloque Descuentos -->
+        <div class="col-lg-4">
+        <div class="block" id="descuentosBlock">
+            <h3>Descuentos</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="descuentosTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>D.A.S. OS TITULAR DIG</td>
+                            <td><span id="dasOsTitular">$ 0,00</span></td>
+                        </tr>
+                        <tr>
+                            <td>D.A.S. OS FDO TRASP. DIG</td>
+                            <td><span id="dasOsFdoTrasp">$ 0,00</span></td>
+                        </tr>
+                        <tr>
+                            <td>APORTE JUBILATORIO DIG</td>
+                            <td><span id="aporteJubilatorio">$ 0,00</span></td>
+                        </tr>
+                        <tr>
+                            <td>APORTE LEY 19.032 DIG</td>
+                            <td><span id="aporteLey19032">$ 0,00</span></td>
+                        </tr>
+                        <tr>
+                            <td>D.A.S. SEGURO DE SEPELIO</td>
+                            <td><span id="dasSeguroSepelio">$ 0,00</span></td>
+                        </tr>
+                        <tr>
+                            <td>BCO. C.A.S.A. SEG DE VIDA O.</td>
+                            <td><span id="bcoCasaSegVida">$ 0,00</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="subtotal">
+                Subtotal Descuentos: <span id="subtotalDescuentos">$ 0,00</span>
+            </div>
+        </div>
+
+        <!-- Total Neto -->
+        <div class="block" id="totalNetoBlock">
+            <h3>Total Neto a Pagar</h3>
+            <table class="table table-bordered mb-0" style="font-size:0.82rem">
+                <tbody>
+                    <tr>
+                        <td><strong>Subtotal Ingresos</strong></td>
+                        <td class="text-end" id="resSubtotalSueldo">$ 0,00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Subtotal Descuentos</strong></td>
+                        <td class="text-end text-danger" id="resSubtotalDescuentos">$ 0,00</td>
+                    </tr>
+                    <tr class="table-success">
+                        <td><strong>TOTAL NETO</strong></td>
+                        <td class="text-end" id="resTotalNeto"><strong>$ 0,00</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div><!-- fin col descuentos -->
+        </div><!-- fin row -->
+
+    </div>
+
+    <div class="modal fade" id="adminSeteoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" style="font-size:0.95rem;font-weight:700;">Panel de Seteo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" style="font-size:0.84rem;">
+                    <div id="adminAuthBlock">
+                        <label for="adminPassword" class="form-label mb-1" style="font-weight:700;">Contraseña</label>
+                        <input type="password" id="adminPassword" class="form-control form-control-sm" placeholder="Ingrese contraseña">
+                        <small id="adminAuthMsg" class="text-danger" style="display:none;">Contraseña incorrecta</small>
+                        <button type="button" class="btn btn-primary btn-sm mt-2 w-100" id="adminUnlockBtn">Ingresar</button>
+                    </div>
+
+                    <div id="adminConfigBlock" style="display:none;">
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <label for="adminCategoriaSelect" class="form-label mb-1" style="font-weight:700;">Categoría a editar</label>
+                                <select id="adminCategoriaSelect" class="form-control form-control-sm">
+                                    <option value="1">Categoría 1</option>
+                                    <option value="2">Categoría 2</option>
+                                    <option value="3">Categoría 3</option>
+                                    <option value="4">Categoría 4</option>
+                                    <option value="5">Categoría 5</option>
+                                    <option value="6">Categoría 6</option>
+                                    <option value="7">Categoría 7</option>
+                                    <option value="8">Categoría 8</option>
+                                    <option value="9">Categoría 9</option>
+                                    <option value="10">Categoría 10</option>
+                                    <option value="11">Categoría 11</option>
+                                    <option value="12">Categoría 12</option>
+                                    <option value="13">Categoría 13</option>
+                                    <option value="14">Categoría 14</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="adminCantidadModulos" class="form-label mb-1" style="font-weight:700;">Cantidad de módulos</label>
+                                <input type="number" id="adminCantidadModulos" class="form-control form-control-sm" min="0" step="0.001">
+                            </div>
+                            <div class="col-12">
+                                <label for="adminValorModulo" class="form-label mb-1" style="font-weight:700;">Valor del módulo</label>
+                                <input type="number" id="adminValorModulo" class="form-control form-control-sm" min="0" step="0.01">
+                            </div>
+                            <div class="col-12">
+                                <label for="adminValorAntiguedad" class="form-label mb-1" style="font-weight:700;">Valor antigüedad (por año)</label>
+                                <input type="number" id="adminValorAntiguedad" class="form-control form-control-sm" min="0" step="0.01">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm mt-3 w-100" id="adminGuardarBtn">Guardar seteo</button>
+                        <small id="adminSaveMsg" class="text-success" style="display:none;">Seteo aplicado correctamente.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
